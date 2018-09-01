@@ -17,15 +17,12 @@ def main():
     final_words = []
 
     for letter in user_input:
-    # take each letter and open up the corresponding dictionary
+        # take each letter and open up the corresponding dictionary
         dictionary = create_dictionary(letter.lower())
-        print(dictionary)
-        exit()
         for word in all_words:
             if word[0] == letter:
-                for real_word in dictionary:
-                    if word == real_word and word not in final_words:
-                        final_words.append(word)
+                if word in dictionary and word not in final_words:
+                    final_words.append(word)
         dictionary = []
 
     print(final_words)
@@ -34,6 +31,7 @@ def main():
 def permutate(w):
     word = w.upper()
     perms = []
+    
     if len(word) <= 1:
         return word
 
