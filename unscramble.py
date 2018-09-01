@@ -17,7 +17,10 @@ def main():
     final_words = []
 
     for letter in user_input:
+    # take each letter and open up the corresponding dictionary
         dictionary = create_dictionary(letter.lower())
+        print(dictionary)
+        exit()
         for word in all_words:
             if word[0] == letter:
                 for real_word in dictionary:
@@ -35,11 +38,11 @@ def permutate(w):
         return word
 
     else:
-        for x in permutate(word[1:]):
-            if x not in perms:
-                perms.append(x)
-            for y in range(len(x)+1):
-                check = x[:y] + word[0] + x[y:]
+        for a in permutate(word[1:]):
+            if a not in perms:
+                perms.append(a)
+            for b in range(len(a)+1):
+                check = a[:b] + word[0] + a[b:]
                 if check not in perms:
                     perms.append(check)
         return perms
