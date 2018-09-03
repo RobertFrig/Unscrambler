@@ -4,13 +4,16 @@ import sys
 def create_dictionary(wordList):
     with open("./dictionaries/{}.txt".format(wordList), "r") as f:
         dictionary = f.read()
-        dictionary = dictionary.split('\n')
+        dictionary = set(dictionary.split('\n'))
     return dictionary
 
 
 def main():
-    user_input = input("Enter a word to be unscrambled:").upper()
-    
+    if len(sys.argv) != 2:
+        user_input = input("Enter a word to be unscrambled:").upper()
+    else:
+        user_input = sys.argv[1].upper()
+
     # creates a list of all possible combinations of letters from user_input
     all_words = permutate(user_input)
 
@@ -19,6 +22,7 @@ def main():
     for letter in user_input:
         # take each letter and open up the corresponding dictionary
         dictionary = create_dictionary(letter.lower())
+        
         for word in all_words:
             if word[0] == letter:
                 if word in dictionary and word not in final_words:
